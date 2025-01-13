@@ -4,7 +4,7 @@ def user_input():
             operation_field = input("Calculate something:\n")
         except ValueError:
             print("Invalid format")
-        valid_characters = "0123546789+-*/"
+        valid_characters = "0123546789+-*/ "
         for i in range(len(operation_field)):
             if operation_field[i] not in valid_characters:
                 print("No.")
@@ -33,7 +33,9 @@ def user_input():
                         print("Ha!")
 
         return result
+def main():
+    while True:
+        final_result = user_input()
+        print(final_result)
 
-final_result = user_input()
-print(final_result)
-
+main()
