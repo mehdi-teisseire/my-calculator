@@ -1,4 +1,4 @@
-def user_input():    
+
 
     while True:
         try:
@@ -38,3 +38,4 @@ def user_input():
 
 final_result = user_input()
 print(final_result)
+
