@@ -33,7 +33,9 @@ def user_input():
                         print("Ha!")
 
         return result
+def main():
+    while True:
+        final_result = user_input()
+        print(final_result)
 
-final_result = user_input()
-print(final_result)
-
+main()
