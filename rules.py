@@ -19,3 +19,17 @@ def resolve_math_input(math_input):
                 raise ZeroDivisionError(" HA! Division by 0! ")
             value_list.append(left_value / right_value)
 
+    # To rule the operation order (1= low priority)
+    def operator_priority(operator):
+        if operator in ('+', '-'):
+            return 1
+        if operator in ('*', '/'):
+            return 2
+        return 0
+    
+    operator_list = []
+    value_list = []
+    index = 0
+    
+
+
