@@ -35,5 +35,9 @@ def resolve_math_input(math_input):
     value_list = []
     index = 0
 
+    while index < len(math_input):
+        if math_input[index] == ' ':
+            index += 1
+            continue
 
 
