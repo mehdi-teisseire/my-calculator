@@ -1,7 +1,9 @@
+import display
+
 def user_input():   
     while True:
         try:
-            operation_field = input("Calculate something:\n")
+            operation_field = display.ask_operation()
         except ValueError:
             print("Invalid format")
         valid_characters = "0123546789+-*/ "
