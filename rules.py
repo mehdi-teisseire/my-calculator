@@ -39,5 +39,20 @@ def resolve_math_input(math_input):
         if math_input[index] == ' ':
             index += 1
             continue
+    
+    if math_input[index].isdigit() or (math_input[index] == '-' and (index == 0 or math_input[index-1] in '*/-()')):
+        number_str = ''
+        is_negative = (math_input[index] == '-')
+        if is_negative:
+            index +=1
+        while (index < len(math_input) and (math_input[index].isdigit() or math_input[index] == '.')):
+            number_str += math_input[index]
+            index += 1
+        number = float(number_str)
+        if is_negative:
+            number = -number
+        value_list.append(number)
+        continue
+
 
 
