@@ -22,7 +22,6 @@ def error_not_openable():
 def error_not_writable():
     print("Something went wrong when writing the file!")
 
-
 # History
 def history(value): #TODO temp variable; Need to know what History returns
     print(value)
