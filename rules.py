@@ -1,6 +1,28 @@
 import display
 # Rules
 
+# User input 
+def user_input():   
+    while True:
+        try:
+            operation_field = display.input_operation()
+            operation_field = operation_field.replace('=', '').strip() 
+            valid_characters = "0123456789+-*/()%. "
+            for character in operation_field:
+                if character not in valid_characters:
+                    display.error_invalid_chara()
+                    break
+            else:
+                try:
+                    result = resolve_math_input(operation_field) 
+                    return result  
+                except ZeroDivisionError:
+                    display.error_division_zero() 
+                except Exception:
+                    display.error_format()
+        except ValueError:
+            display.error_format()
+
 #
 def resolve_math_input(math_input):
 
