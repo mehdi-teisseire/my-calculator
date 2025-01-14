@@ -1,5 +1,7 @@
+import display
 # Rules
 
+#
 def resolve_math_input(math_input):
 
     # Too apply an operator on 2 values
@@ -18,41 +20,34 @@ def resolve_math_input(math_input):
             if right_value == 0:
                 raise ZeroDivisionError(" HA! Division by 0! ")
             value_list.append(left_value / right_value)
+        elif operator == '%':
+            value_list.append(left_value % right_value)
+        elif operator == '//':
+            value_list.append(left_value // right_value)
+        elif operator == '**':
+            value_list.append(left_value ** right_value)
+        elif operator == '**0.5':
+            value_list.append(left_value **0.5 )
 
     # To rule the operation order (0= highest priority)
     def operator_priority(operator):
         if operator == '(':
-            return 0
+            return 0  
         if operator == ')':
-            return 4
+            return 5  
+        if operator ==('** , **0.5 '):
+            return 1 
+        if operator in ('*', '/', '%', '//'):
+            return 3  
         if operator in ('+', '-'):
-            return 1
-        if operator in ('*', '/'):
-            return 2
-        return -1
+            return 4  
+        return -1 
     
     operator_list = []
     value_list = []
     index = 0
-
+    # Check for white space and skip
     while index < len(math_input):
         if math_input[index] == ' ':
             index += 1
             continue
-    
-    if math_input[index].isdigit() or (math_input[index] == '-' and (index == 0 or math_input[index-1] in '*/-()')):
-        number_str = ''
-        is_negative = (math_input[index] == '-')
-        if is_negative:
-            index +=1
-        while (index < len(math_input) and (math_input[index].isdigit() or math_input[index] == '.')):
-            number_str += math_input[index]
-            index += 1
-        number = float(number_str)
-        if is_negative:
-            number = -number
-        value_list.append(number)
-        continue
-
-
-
