@@ -88,3 +88,10 @@ def resolve_math_input(math_input):
                 number = -number
             value_list.append(number)
             continue
+        # Handle () opening and closing   
+        if math_input[index] == '(':
+            operator_list.append(math_input[index])  
+        elif math_input[index] == ')':
+            while operator_list and operator_list[-1] != '(':
+                apply_operator(operator_list, value_list)
+            operator_list.pop()
