@@ -16,6 +16,12 @@ def error_invalid_chara():
 def error_division_zero():
     print("Can't divide by 0! (would make +∞, -∞ or 0 anyway)")
 
+def error_not_openable():
+    print("Something went wrong when opening the file!")
+
+def error_not_writable():
+    print("Something went wrong when writing the file!")
+
 # History
 def history(value): #TODO temp variable; Need to know what History returns
     print(value)
