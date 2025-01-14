@@ -79,3 +79,12 @@ def resolve_math_input(math_input):
             is_negative = (math_input[index] == '-')
             if is_negative:
                 index +=1
+            # Build number string handleling digits or decimal point
+            while (index < len(math_input) and (math_input[index].isdigit() or math_input[index] == '.')):
+                number_str += math_input[index]
+                index += 1
+            number = float(number_str)
+            if is_negative:
+                number = -number
+            value_list.append(number)
+            continue
