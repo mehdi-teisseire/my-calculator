@@ -26,7 +26,7 @@ def user_input():
 #
 def resolve_math_input(math_input):
 
-    # Too apply an operator on 2 values
+    # To apply an operator on 2 values
     def apply_operator(operator_list, value_list):
         right_value = value_list.pop()
         left_value = value_list.pop()
@@ -73,3 +73,9 @@ def resolve_math_input(math_input):
         if math_input[index] == ' ':
             index += 1
             continue
+        # Check for numbers and negative signs
+        if math_input[index].isdigit() or (math_input[index] == '-' and (index == 0 or math_input[index-1] in '*/-()')):
+            number_str = ''
+            is_negative = (math_input[index] == '-')
+            if is_negative:
+                index +=1
