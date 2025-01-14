@@ -95,3 +95,9 @@ def resolve_math_input(math_input):
             while operator_list and operator_list[-1] != '(':
                 apply_operator(operator_list, value_list)
             operator_list.pop()
+        else:
+            # Handle operator priority
+            while (operator_list and operator_priority(operator_list[-1]) >= operator_priority(math_input[index])):
+                apply_operator(operator_list, value_list)
+            operator_list.append(math_input[index])  
+        index += 1 
