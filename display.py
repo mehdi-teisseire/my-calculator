@@ -27,5 +27,5 @@ def history(value): #TODO temp variable; Need to know what History returns
     print(value)
 
 # Result
-def result(value): #TODO temp variable; Need to know how to print result
+def final_result(value): #TODO temp variable; Need to know how to print result
     print(f"= {value}")
