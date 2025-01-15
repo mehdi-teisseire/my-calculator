@@ -8,7 +8,7 @@ def main():
         #else:
             user_str = display.input_operation()
             #history.open()
-            final_result = resolve_math_input(user_str)
+            final_result = user_input()
             display.final_result(final_result)
 
 main()
