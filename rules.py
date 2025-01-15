@@ -22,7 +22,7 @@ def user_input(operation_field):
                 except ZeroDivisionError:
                     display.error_division_zero() 
                 except Exception:
-                    display.error_format()
+                    display.error_calculation()
         except ValueError:
             display.error_format()
 

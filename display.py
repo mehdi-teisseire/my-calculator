@@ -46,6 +46,9 @@ def error_reset(e):
 def error_print(e):
     print(f'Error printing file : {e}')
 
+def error_calculation():
+    print("Something bad happened during calculation!")
+
 # History
 def history(content): #TODO temp variable; Need to know what History returns
     print(f'File content: {"\n" +content}')
