@@ -5,7 +5,8 @@ def user_input():
     while True:
         try:
             operation_field = display.input_operation()
-            operation_field = operation_field.replace('=', '').strip() 
+            operation_field = operation_field.replace('=', '').strip()
+            operation_field = operation_field.replace(" ", "") 
             valid_characters = [
                 "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
                 "+", "-", "*", "/", "(", ")", "%", " ", "//", "**", "."
