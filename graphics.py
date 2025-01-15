@@ -71,7 +71,6 @@ class App(customtkinter.CTk):
         self.numbers_frame = NumbersFrame(self)
         self.numbers_frame.grid(row = 1, column = 0, sticky="ns")
 
-
 app = App()
 app.mainloop()
 
