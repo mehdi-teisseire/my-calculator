@@ -48,3 +48,16 @@ def reset_file(filename):
         print(f"File {filename} has been reset")
     except Exception as e:
         print(f"Error resetting file: {e}")
+
+def print_file(filename):
+
+    if not filename.endswith('.txt'):
+        filename += '.txt'
+    
+    try:
+        with open(filename,'r') as file :
+            content = file.read()
+            print(f'File content: {"\n" +content}')
+    except Exception as e:
+        print(f'Error printing file : {e}')
+    
