@@ -6,6 +6,7 @@ def input_operation():
 def message_welcome():
     print("Welcome to MyCalculator®!")
 
+
 def message_file_open(filename):
     print(f"Data successfully saved to {filename}")
 
