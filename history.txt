@@ -1,2 +1,12 @@
 23
 23
+oui23
+coucou23
+dsdsdsd 23
+salut = 23
+dsdqddf = 23.2212121212
+ffds = 23.2212121212
+ll = 0.3333333333333333
+12 = 2
+TEST = 0.33
+ Monster = 0.333
