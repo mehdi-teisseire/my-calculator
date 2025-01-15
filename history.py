@@ -1,3 +1,5 @@
+import display
+
 def save_to_file(data, filename):
 
     if not filename.endswith('.txt'):
@@ -6,9 +8,9 @@ def save_to_file(data, filename):
     try:
         with open(filename, 'w') as file:
             file.write(str(data))
-        print(f"Data successfully saved to {filename}")
+        display.message_file_open(filename)
     except Exception as e:
-        print(f"Error saving to file: {e}")
+        display.error_saving(e)
 
 def append_to_file(data, filename):
     
@@ -18,10 +20,9 @@ def append_to_file(data, filename):
     try:
         with open(filename, 'a') as file:
             file.write(str(data) + '\n')
-        print(f"Data successfully appended to {filename}")
+        display.message_file_open(filename)
     except Exception as e:
-        print(f"Error appending to file: {e}")
-
+        display.error_append_file(e)
 def delete_file(filename):
     
     import os
@@ -31,11 +32,11 @@ def delete_file(filename):
     try:
         if os.path.exists(filename):
             os.remove(filename)
-            print(f"File {filename} successfully deleted")
+            display.message_file_delete(filename)
         else:
-            print(f"File {filename} does not exist")
+            display.error_file_not_exist(filename)
     except Exception as e:
-        print(f"Error deleting file: {e}")
+        display.error_delete(e)
 
 def reset_file(filename):
 
@@ -45,9 +46,9 @@ def reset_file(filename):
     try:
         with open(filename, 'w') as file:
             file.write('') 
-        print(f"File {filename} has been reset")
+        display.message_file_reset(filename)
     except Exception as e:
-        print(f"Error resetting file: {e}")
+        display.error_reset(e)
 
 def print_file(filename):
 
@@ -57,7 +58,7 @@ def print_file(filename):
     try:
         with open(filename,'r') as file :
             content = file.read()
-            print(f'File content: {"\n" +content}')
+            display.history(content)
     except Exception as e:
-        print(f'Error printing file : {e}')
+        display.error_print(e)
     

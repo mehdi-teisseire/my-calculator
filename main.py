@@ -1,4 +1,5 @@
-import history, rules, display
+import history, display
+from rules import user_input
 
 def main():
     while True:
@@ -7,7 +8,7 @@ def main():
         #if graphic_type = True:
         #else:
             user_str = display.input_operation()
-            #history.open()
+            history.print_file()
             final_result = user_input()
             display.final_result(final_result)
 
