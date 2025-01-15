@@ -8,8 +8,9 @@ def main():
         #if graphic_type = True:
         #else:
             user_str = display.input_operation()
-            history.print_file()
-            final_result = user_input()
+            history.append_to_file(user_str, "history")
+            #history.print_file("history")
+            final_result = user_input(user_str)
             display.final_result(final_result)
 
 main()

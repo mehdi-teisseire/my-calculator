@@ -2,10 +2,9 @@ import display
 # Rules
 
 # User input 
-def user_input():   
+def user_input(operation_field):   
     while True:
         try:
-            operation_field = display.input_operation()
             operation_field = operation_field.replace('=', '').strip()
             operation_field = operation_field.replace(" ", "") 
             valid_characters = [
