@@ -1,17 +1,25 @@
+import history
+
 def user_input():   
     while True:
         try:
             operation_field = input("Calculate something:\n")
         except ValueError:
             print("Invalid format")
+        return operation_field
+
+def valid_chr(operation_field):
         valid_characters = "0123546789+-*/ "
         for i in range(len(operation_field)):
             if operation_field[i] not in valid_characters:
                 print("No.")
-                break 
+                invalid =True
+                break
             else:
                 continue
-        
+    
+        return valid_characters
+def calculator(valid_characters,operation_field):
         numbers_temp, operators_temp = operation_field, operation_field
         for symbol in valid_characters[10:]:
             numbers_temp = numbers_temp.replace(symbol, " ")
@@ -34,8 +42,15 @@ def user_input():
 
         return result
 def main():
+
     while True:
-        final_result = user_input()
+        invalid = False
+        operation_input = user_input()
+        chr_string = valid_chr(operation_input)
+        if invalid == True:
+            continue
+        final_result=calculator(chr_string,operation_input)
         print(final_result)
+        history.new_history(final_result,)
 
 main()
