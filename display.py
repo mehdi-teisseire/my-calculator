@@ -6,6 +6,12 @@ def input_operation():
 def message_welcome():
     print("Welcome to MyCalculator®!")
 
+def message_file_create():
+    pass
+
+def message_file_exist():
+    pass
+
 # Errors
 def error_format():
     print("Invalid format!")
@@ -22,10 +28,25 @@ def error_not_openable():
 def error_not_writable():
     print("Something went wrong when writing the file!")
 
+def error_not_saving():
+    pass
+
+def error_append_file():
+    pass
+
+def error_not_deleted():
+    pass
+
+def error_file_not_exist():
+    pass
+ 
+def error_reset_failed():
+    pass
+
 # History
 def history(value): #TODO temp variable; Need to know what History returns
     print(value)
 
 # Result
-def final_result(value): #TODO temp variable; Need to know how to print result
+def result(value): #TODO temp variable; Need to know how to print result
     print(f"= {value}")
