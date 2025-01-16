@@ -1,3 +1,4 @@
+import graphics
 import history, display
 from rules import resolve_math_input
 import os
