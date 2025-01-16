@@ -3,7 +3,7 @@ import display
 
 # User input 
 def user_input(operation_field):   
-    while True:
+    # while True:
         try:
             operation_field = operation_field.replace('=', '').strip()
             operation_field = operation_field.replace(" ", "") 
