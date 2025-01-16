@@ -1,3 +1,4 @@
+import rules
 import customtkinter
 
 class InputFrame(customtkinter.CTkFrame):
@@ -37,7 +38,7 @@ class NumbersFrame(customtkinter.CTkFrame):
         self.button_numbers[10].grid(row = 3, column = 2, padx = 2, pady = 2, sticky = "news") 
 
     def button_input_character(self):
-        print(self.value)
+        print(self.button_numbers[0].cget("text"))
         #test = self.cget("text")
         #print(test)
 
@@ -45,6 +46,7 @@ class OperatorFrame(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
+        self.command = None
         # Columns in frame Operator
         for i in range(2): 
             self.columnconfigure(i ,weight = 1)
@@ -57,34 +59,37 @@ class OperatorFrame(customtkinter.CTkFrame):
         # Operator buttons
         self.button_plus = customtkinter.CTkButton(self, text="+", command=self.button_input_character)
         self.button_plus.grid(row = 0, column = 0, padx= 2, pady = 2, sticky = "news")
-        self.button_plus.bind('+', rules.user_input(master.input_operation.get()))
+       
 
         self.button_minus = customtkinter.CTkButton(self, text="-", command=self.button_input_character)
         self.button_minus.grid(row = 0, column = 1, padx= 2, pady = 2, sticky = "news")
-        self.button_minus.bind('-', rules.user_input(master.input_operation.get()))
+        
 
         self.button_multiply = customtkinter.CTkButton(self, text="*", command=self.button_input_character)
         self.button_multiply.grid(row = 1, column = 0, padx= 2, pady = 2, sticky = "news")
-        self.button_multiply.bind('*', rules.user_input(master.input_operation.get()))
+        
 
         self.button_divide = customtkinter.CTkButton(self, text="/", command=self.button_input_character)
         self.button_divide.grid(row = 1, column = 1, padx= 2, pady = 2, sticky = "news")
-        self.button_divide.bind('/', rules.user_input(master.input_operation.get()))
+        
 
         self.button_equal = customtkinter.CTkButton(self, text="=", command=self.button_display_result(master))
         self.button_equal.grid(row = 2, column = 0, columnspan = 2, padx = 2, pady = 20, sticky = "news")
-        self.button_equal.bind('<Return>', rules.user_input(master.input_operation.get()))
+        #self.button_equal.bind('<Return>', master.input_operation.insert(0, '<Return>'))
 
     def button_input_character(self):
-        print(self.cget("text"))
+        print(self.button_minus.cget("text"))
+        #rules.user_input(master.input_operation.get())
         #test = self.cget("text")
         #print(test)
 
     def button_display_result(self, master):
-        # self.bind('<Return>', rules.user_input(master.input_operation.get()))
-        result = rules.user_input(master.input_operation.get())
+        if self.command is not None:
+            self.command()
+
+        #result = rules.user_input(master.input_operation.get())
         
-        master.input_operation.insert(0, result)
+       # master.input_operation.insert(0, result)
 
 class App(customtkinter.CTk):
     def __init__(self):
