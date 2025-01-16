@@ -38,7 +38,7 @@ class NumbersFrame(customtkinter.CTkFrame):
         self.button_numbers[10].grid(row = 3, column = 2, padx = 2, pady = 2, sticky = "news") 
 
     def button_input_character(self):
-        print(self.button_numbers[0].cget("text"))
+        print(self.button_numbers.index(self.button_numbers))
         #test = self.cget("text")
         #print(test)
 
@@ -79,7 +79,7 @@ class OperatorFrame(customtkinter.CTkFrame):
 
     def button_input_character(self):
         print(self.button_minus.cget("text"))
-        #rules.user_input(master.input_operation.get())
+        rules.user_input(self.master.input_operation.get())
         #test = self.cget("text")
         #print(test)
 
