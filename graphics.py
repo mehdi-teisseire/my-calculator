@@ -4,13 +4,12 @@ class InputFrame(customtkinter.CTkFrame):
     def __init__(self, master):
         super().__init__(master)
 
-        self.rowconfigure(0)
-        self.columnconfigure(0)
-
+        
         # input that accept direct keys or buttons
         # display result in input directly or in label next to it (weight 4:1)
 
-        
+        #CTkEntry -> see webpage
+
 
 
 class NumbersFrame(customtkinter.CTkFrame):
@@ -58,26 +57,34 @@ class OperatorFrame(customtkinter.CTkFrame):
         # Operator buttons
         self.button_plus = customtkinter.CTkButton(self, text="+", command=self.button_input_character)
         self.button_plus.grid(row = 0, column = 0, padx= 2, pady = 2, sticky = "news")
+        self.button_plus.bind('+', rules.user_input(master.input_operation.get()))
 
         self.button_minus = customtkinter.CTkButton(self, text="-", command=self.button_input_character)
         self.button_minus.grid(row = 0, column = 1, padx= 2, pady = 2, sticky = "news")
+        self.button_minus.bind('-', rules.user_input(master.input_operation.get()))
 
         self.button_multiply = customtkinter.CTkButton(self, text="*", command=self.button_input_character)
         self.button_multiply.grid(row = 1, column = 0, padx= 2, pady = 2, sticky = "news")
+        self.button_multiply.bind('*', rules.user_input(master.input_operation.get()))
 
         self.button_divide = customtkinter.CTkButton(self, text="/", command=self.button_input_character)
         self.button_divide.grid(row = 1, column = 1, padx= 2, pady = 2, sticky = "news")
-        
-        self.button_equal = customtkinter.CTkButton(self, text="=", command=self.button_display_result)
+        self.button_divide.bind('/', rules.user_input(master.input_operation.get()))
+
+        self.button_equal = customtkinter.CTkButton(self, text="=", command=self.button_display_result(master))
         self.button_equal.grid(row = 2, column = 0, columnspan = 2, padx = 2, pady = 20, sticky = "news")
+        self.button_equal.bind('<Return>', rules.user_input(master.input_operation.get()))
 
     def button_input_character(self):
-        print(self.value)
+        print(self.cget("text"))
         #test = self.cget("text")
         #print(test)
 
-    def button_display_result(self):
-        print(self)
+    def button_display_result(self, master):
+        # self.bind('<Return>', rules.user_input(master.input_operation.get()))
+        result = rules.user_input(master.input_operation.get())
+        
+        master.input_operation.insert(0, result)
 
 class App(customtkinter.CTk):
     def __init__(self):
@@ -92,21 +99,20 @@ class App(customtkinter.CTk):
         self.rowconfigure(0, weight = 1)
         self.rowconfigure(1, weight = 2)
 
+        self.input_operation = customtkinter.CTkEntry(self, placeholder_text="type something")
+        self.input_operation.grid(row = 0, column = 0, columnspan = 2, sticky = "news")
+
+
         # Frames
-        self.input_frame = InputFrame(self)
-        self.operator_frame.grid(row = 0, column = 0, columnspan= 2, sticky="ns")
 
         self.numbers_frame = NumbersFrame(self)
         self.numbers_frame.grid(row = 1, column = 0, sticky="news")
-
-            #maybe a separator here?
 
         self.operator_frame = OperatorFrame(self)
         self.operator_frame.grid(row = 1, column = 1, sticky="news")
 
             #history on a new window
         #self.history_frame = HistoryFrame(self)
-        #self.operator_frame.grid
+        #self.history_frame.grid
 
 app = App()
-app.mainloop()

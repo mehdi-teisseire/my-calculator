@@ -1,4 +1,7 @@
 # Inputs
+def input_graphic_selection():
+    return input("Type anything to start graphical interface. Leave blank for console interface")
+
 def input_operation():
     return input("Please type your operation:\n")
 
