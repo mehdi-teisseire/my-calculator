@@ -5,7 +5,6 @@ import display
 def user_input(operation_field):   
     while True:
         try:
-            operation_field = display.input_operation() 
             operation_field = operation_field.replace('=', '').strip()
             operation_field = operation_field.replace(" ", "") 
             valid_characters = [
@@ -14,18 +13,21 @@ def user_input(operation_field):
             ]
             for character in operation_field:
                 if character not in valid_characters:
-                    display.error_invalid_chara()
+                    #display.error_invalid_chara()
                     break
             else:
                 try:
                     result = resolve_math_input(operation_field) 
                     return result  
                 except ZeroDivisionError:
-                    display.error_division_zero() 
+                    test = 1
+                   # display.error_division_zero() 
                 except Exception:
-                    display.error_calculation()
+                    test = 1
+                   # display.error_calculation()
         except ValueError:
-            display.error_format()
+            test = 1
+            # display.error_format()
 
 # To Evaluates the mathematical input
 def resolve_math_input(math_input):

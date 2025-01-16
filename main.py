@@ -5,12 +5,11 @@ from rules import resolve_math_input
 
 def graphic_choice():
     graph = display.input_graphic_selection()
-    if graph == True:
-        main2()
+    if graph == "o":
+        graphics.app.mainloop()
+        
     else:
         main()
-def main2():
-    graphics.app.mainloop()
 
 def main():
     while True:
