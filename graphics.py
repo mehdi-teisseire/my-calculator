@@ -129,6 +129,14 @@ class OperatorFrame(customtkinter.CTkFrame):
             print(f"Résultat : {final_result}")
 
 
+class HistoryWindow(customtkinter.CTkToplevel):
+    def __init__(self, master):
+        super().__init__()
+        self.title("History")
+        self.geometry("300x600")
+
+        print('selected:', history.txt )
+
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
@@ -156,9 +164,8 @@ class App(customtkinter.CTk):
         self.operator_frame = OperatorFrame(self)
         self.operator_frame.grid(row = 1, column = 1, sticky="news")
 
-            #history on a new window
-        #self.history_frame = HistoryFrame(self)
-        #self.history_frame.grid
+        # History
+        self.history_window = HistoryWindow(self)
 
 app = App()
 app.mainloop()
