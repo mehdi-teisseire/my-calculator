@@ -35,51 +35,52 @@ def user_input_terminal():
     
     return operation_field
 
-def resolve_math_input(math_input):
-
     # Simplify consecutive operators
-    def simplify_consecutive_operators(expression):
-        expression = expression.replace("+-", "-")
-        expression = expression.replace("-+", "-")
-        expression = expression.replace("--", "+")
-        expression = expression.replace("++", "+")
-        return expression
-    
+def simplify_consecutive_operators(expression):
+    expression = expression.replace("+-", "-")
+    expression = expression.replace("-+", "-")
+    expression = expression.replace("--", "+")
+    expression = expression.replace("++", "+")
+    return expression
+
     # Apply an operator on 2 values
-    def apply_operator(operator_list, value_list):
-        right_value = value_list.pop()
-        left_value = value_list.pop()
-        operator = operator_list.pop()
+def apply_operator(operator_list, value_list):
+    right_value = value_list.pop()
+    left_value = value_list.pop()
+    operator = operator_list.pop()
 
-        if operator == '+':
-            value_list.append(left_value + right_value)
-        elif operator == '-':
-            value_list.append(left_value - right_value)
-        elif operator == '*':
-            value_list.append(left_value * right_value)
-        elif operator == '/':
-            value_list.append(left_value / right_value)
-        elif operator == '%':
-            value_list.append(left_value % right_value)
-        elif operator == '//':
-            value_list.append(left_value // right_value)
-        elif operator == '**':
-            value_list.append(left_value ** right_value)
+    if operator == '+':
+        value_list.append(left_value + right_value)
+    elif operator == '-':
+        value_list.append(left_value - right_value)
+    elif operator == '*':
+        value_list.append(left_value * right_value)
+    elif operator == '/':
+        value_list.append(left_value / right_value)
+    elif operator == '%':
+        value_list.append(left_value % right_value)
+    elif operator == '//':
+        value_list.append(left_value // right_value)
+    elif operator == '**':
+        value_list.append(left_value ** right_value)
 
-    # To rule the operation order (0= highest priority)
-    def operator_priority(operator):
-        if operator == '(':
-            return 0  
-        if operator == ')':
-            return 5  
-        if operator == '**':
-            return 4 
-        if operator in ('*', '/', '%', '//'):
-            return 3  
-        if operator in ('+', '-'):
-            return 2  
-        return -1 
-    
+# To rule the operation order (0= highest priority)
+def operator_priority(operator):
+    if operator == '(':
+        return 0  
+    if operator == ')':
+        return 5  
+    if operator == '**':
+        return 4 
+    if operator in ('*', '/', '%', '//'):
+        return 3  
+    if operator in ('+', '-'):
+        return 2  
+    return -1 
+
+# main function that resolve the inputed operation
+def resolve_math_input(math_input):
+ 
     operator_list = []
     value_list = []
     index = 0
