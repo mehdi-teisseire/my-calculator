@@ -5,14 +5,14 @@ def clear_screen():
     #Clear the terminal screen based on operating system.
     os.system("cls" if os.name == "nt" else "clear")
 
-def save_to_file(data, filename):
+def save_to_file(filename):
 
     if not filename.endswith('.txt'):
         filename += '.txt'
     
     try:
         with open(filename, 'w') as file:
-            file.write(str(data))
+            file.write(str("History file"))
         display.message_file_open(filename)
     except Exception as e:
         display.error_saving(e)
@@ -71,7 +71,7 @@ def display_menu(filename):
     while True:
         print("\n=== File Operations Menu ===")
         print("1. Show history")
-        print("2. Reset/clear file")
+        print("2. Reset/clear file/Create file")
         print("3. Exit")
         
         choice = input("\nEnter your choice (1-3): ")
@@ -93,7 +93,7 @@ def display_menu(filename):
             else:
                 clear_screen()
                 print("Reset cancelled")
-                
+
         else:
             clear_screen()
             print("Invalid choice! Please enter a number between 1 and 4")
