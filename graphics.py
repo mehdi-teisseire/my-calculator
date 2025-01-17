@@ -1,4 +1,4 @@
-import rules
+#import rules
 import customtkinter
 
 class InputFrame(customtkinter.CTkFrame):
@@ -30,7 +30,7 @@ class NumbersFrame(customtkinter.CTkFrame):
         self.button_close_bracket = customtkinter.CTkButton(self, text=")", font=master.fonts, command=lambda: master.input_operation.insert('end', ")"))
         self.button_close_bracket.grid(row = 0, column = 1, padx = 2, pady = 2, sticky = "news") 
 
-        self.button_memory = customtkinter.CTkButton(self, text="m", font=master.fonts, command=lambda: master.input_operation.insert('end', "m")) #replace with last value
+        self.button_memory = customtkinter.CTkButton(self, text="DEL", font=master.fonts, command=lambda: master.input_operation.delete(int(len(master.input_operation.get())-1), 'end')) #replace with last value
         self.button_memory.grid(row = 0, column = 2, padx = 2, pady = 2, sticky = "news") 
 
         self.button_numbers.append(customtkinter.CTkButton(self, text="0", font=master.fonts, command=lambda: master.input_operation.insert('end', "0")))
@@ -86,8 +86,8 @@ class OperatorFrame(customtkinter.CTkFrame):
 
         # Operator buttons
 
-        self.button_history = customtkinter.CTkButton(self, text="h", font=master.fonts, command=lambda: master.input_operation.insert('end', "h")) #replace with open history window
-        self.button_history.grid(row = 0, column = 0, padx= 2, pady = 2, sticky = "news")
+        self.button_memory = customtkinter.CTkButton(self, text="C", font=master.fonts, command=lambda: master.input_operation.delete(0, len(master.input_operation.get()))) #replace with last value
+        self.button_memory.grid(row = 0, column = 0, padx = 2, pady = 2, sticky = "news") 
 
         self.button_exponent = customtkinter.CTkButton(self, text="**", font=master.fonts, command=lambda: master.input_operation.insert('end', "**"))
         self.button_exponent.grid(row = 0, column = 1, padx= 2, pady = 2, sticky = "news")
@@ -161,3 +161,4 @@ class App(customtkinter.CTk):
         #self.history_frame.grid
 
 app = App()
+app.mainloop()
