@@ -1,4 +1,9 @@
 import display
+import os
+
+def clear_screen():
+    #Clear the terminal screen based on operating system.
+    os.system("cls" if os.name == "nt" else "clear")
 
 def save_to_file(data, filename):
 
@@ -76,14 +81,20 @@ def display_menu(filename):
             break
         
         if choice == "1":
+            clear_screen()
             print_file(filename)
+            
                 
         elif choice == '2':
             confirmation = input(f"Are you sure you want to reset {filename}.txt? (yes/no): ")
             if confirmation.lower() == 'yes':
+                clear_screen()
                 reset_file(filename)
             else:
+                clear_screen()
                 print("Reset cancelled")
                 
         else:
+            clear_screen()
             print("Invalid choice! Please enter a number between 1 and 4")
+            
