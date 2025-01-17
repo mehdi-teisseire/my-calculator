@@ -8,6 +8,7 @@ def clear_screen():
 
 def main():
     while True:
+        
         print("1. Calculator")
         print("2. History manager")
         menu_choice =input("Enter your Choice (1-2)")
