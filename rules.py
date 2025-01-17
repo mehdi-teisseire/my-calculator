@@ -1,8 +1,7 @@
 import display
 
- # User operation input
-def user_input():
-    operation_field = display.input_operation() 
+# graphic user input
+def user_input(operation_field):
     operation_field = operation_field.replace('=', '').strip()
     operation_field = operation_field.replace(" ", "")
     
@@ -18,6 +17,23 @@ def user_input():
     
     return operation_field
 
+# terminal user input
+def user_input_terminal():
+    operation_field = display.input_operation() 
+    operation_field = operation_field.replace('=', '').strip()
+    operation_field = operation_field.replace(" ", "")
+    
+    valid_characters = [
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
+        "+", "-", "*", "/", "(", ")", "%", " ", "//", "**", "."
+    ]
+    
+    for character in operation_field:
+        if character not in valid_characters:
+            display.error_invalid_chara()
+            return None 
+    
+    return operation_field
 
 def resolve_math_input(math_input):
 
