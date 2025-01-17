@@ -1,15 +1,18 @@
 import history, display
 from rules import resolve_math_input
+import os
+
+def clear_screen():
+    #Clear the terminal screen based on operating system.
+    os.system("cls" if os.name == "nt" else "clear")
 
 def main():
     while True:
-            
-        #while True
-            #graphic_type = display.input_graphics_type()
-        #if graphic_type = True:
-        #else:
-        
-            history.print_file("history")
+        print("1. Calculator")
+        print("2. History manager")
+        menu_choice =input("Enter your Choice (1-2)")
+        clear_screen()
+        if menu_choice == "1":
             final_result = 0                                                              # History is read and displayed
             operation_field = display.input_operation()                                                 # User operation input
             try:
@@ -39,4 +42,8 @@ def main():
 
             except ValueError:
                 display.error_format()
+                
+        elif menu_choice == "2" :
+            history.display_menu('history')
+            clear_screen()
 main()
