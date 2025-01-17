@@ -61,4 +61,32 @@ def print_file(filename):
             display.history(content)
     except Exception as e:
         display.error_print(e)
-    
+
+def display_menu(filename):
+    while True:
+        print("\n=== File Operations Menu ===")
+        print("1. Show history")
+        print("2. Reset/clear file")
+        print("3. Exit")
+        
+        choice = input("\nEnter your choice (1-3): ")
+        
+        if choice == '3':
+            print("Goodbye!")
+            break
+        
+        if choice == "1":
+            print_file(filename)
+                
+        elif choice == '2':
+            confirmation = input(f"Are you sure you want to reset {filename}.txt? (yes/no): ")
+            if confirmation.lower() == 'yes':
+                reset_file(filename)
+            else:
+                print("Reset cancelled")
+                
+        else:
+            print("Invalid choice! Please enter a number between 1 and 4")
+        
+        input("\nPress Enter to continue...")
+display_menu('history')
