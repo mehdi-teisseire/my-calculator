@@ -87,5 +87,3 @@ def display_menu(filename):
                 
         else:
             print("Invalid choice! Please enter a number between 1 and 4")
-        
-        input("\nPress Enter to continue...")
