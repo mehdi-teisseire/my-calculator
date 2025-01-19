@@ -1,9 +1,8 @@
 import display
 
-# graphic user input
+# Graphic user input
 def user_input(operation_field):
     operation_field = operation_field.replace('=', '').strip()
-    operation_field = operation_field.replace(" ", "")
     
     valid_characters = [
         "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
@@ -17,11 +16,10 @@ def user_input(operation_field):
     
     return operation_field
 
-# terminal user input
+# Terminal user input
 def user_input_terminal():
     operation_field = display.input_operation() 
     operation_field = operation_field.replace('=', '').strip()
-    operation_field = operation_field.replace(" ", "")
     
     valid_characters = [
         "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
@@ -35,51 +33,51 @@ def user_input_terminal():
     
     return operation_field
 
+# Simplify consecutive operators
+def simplify_consecutive_operators(expression):
+    expression = expression.replace("+-", "-")
+    expression = expression.replace("-+", "-")
+    expression = expression.replace("--", "+")
+    expression = expression.replace("++", "+")
+    return expression
+
+# Apply an operator on 2 values
+def apply_operator(operator_list, value_list):
+    right_value = value_list.pop()
+    left_value = value_list.pop()
+    operator = operator_list.pop()
+
+    if operator == '+':
+        value_list.append(left_value + right_value)
+    elif operator == '-':
+        value_list.append(left_value - right_value)
+    elif operator == '*':
+        value_list.append(left_value * right_value)
+    elif operator == '/':
+        value_list.append(left_value / right_value)
+    elif operator == '%':
+        value_list.append(left_value % right_value)
+    elif operator == '//':
+        value_list.append(left_value // right_value)
+    elif operator == '**':
+        value_list.append(left_value ** right_value)
+
+# To rule the operation order (0= highest priority)
+def operator_priority(operator):
+    if operator == '(':
+        return 0  
+    if operator == ')':
+        return 5  
+    if operator == '**':
+        return 4 
+    if operator in ('*', '/', '%', '//'):
+        return 3  
+    if operator in ('+', '-'):
+        return 2  
+    return -1 
+
+# Main function that resolves the inputted operation
 def resolve_math_input(math_input):
-
-    # Simplify consecutive operators
-    def simplify_consecutive_operators(expression):
-        expression = expression.replace("+-", "-")
-        expression = expression.replace("-+", "-")
-        expression = expression.replace("--", "+")
-        expression = expression.replace("++", "+")
-        return expression
-    
-    # Apply an operator on 2 values
-    def apply_operator(operator_list, value_list):
-        right_value = value_list.pop()
-        left_value = value_list.pop()
-        operator = operator_list.pop()
-
-        if operator == '+':
-            value_list.append(left_value + right_value)
-        elif operator == '-':
-            value_list.append(left_value - right_value)
-        elif operator == '*':
-            value_list.append(left_value * right_value)
-        elif operator == '/':
-            value_list.append(left_value / right_value)
-        elif operator == '%':
-            value_list.append(left_value % right_value)
-        elif operator == '//':
-            value_list.append(left_value // right_value)
-        elif operator == '**':
-            value_list.append(left_value ** right_value)
-
-    # To rule the operation order (0= highest priority)
-    def operator_priority(operator):
-        if operator == '(':
-            return 0  
-        if operator == ')':
-            return 5  
-        if operator == '**':
-            return 4 
-        if operator in ('*', '/', '%', '//'):
-            return 3  
-        if operator in ('+', '-'):
-            return 2  
-        return -1 
-    
     operator_list = []
     value_list = []
     index = 0
@@ -102,9 +100,9 @@ def resolve_math_input(math_input):
             # Build the number string handling digits or decimal point
             while (index < len(math_input) and (math_input[index].isdigit() or math_input[index] == '.')):
                 number_str += math_input[index]
-                index += 1
-            
+                index += 1            
             number = float(number_str)
+            
             if is_negative:
                 number = -number
             value_list.append(number)
@@ -118,17 +116,39 @@ def resolve_math_input(math_input):
         
         # Handle parentheses
         if math_input[index] == '(':
-            operator_list.append(math_input[index])  
+            if index > 0:
+                prev_index = index - 1
+                is_valid_float = False
+                dot_found = False
+                digit_found = False
+                
+                while prev_index >= 0 and (math_input[prev_index].isdigit() or math_input[prev_index] == '.'):
+                    if math_input[prev_index] == '.':
+                        if dot_found:
+                            break 
+                        dot_found = True   
+                    else:
+                        digit_found = True
+                    prev_index -= 1
+                                    
+                if digit_found:
+                    is_valid_float = True
+
+                if is_valid_float and (prev_index < 0 or math_input[prev_index] not in ['*', '(', ' ']):
+                    operator_list.append('*')
+            operator_list.append(math_input[index]) 
+
         elif math_input[index] == ')':
             while operator_list and operator_list[-1] != '(':
                 apply_operator(operator_list, value_list)
-            operator_list.pop() 
+            operator_list.pop()
+
         else:
             # Handle operator priority
             while (operator_list and operator_priority(operator_list[-1]) >= operator_priority(math_input[index])):
-                apply_operator(operator_list, value_list)
+                apply_operator(operator_list, value_list) 
             operator_list.append(math_input[index])  
-        
+            
         index += 1
     
     # Apply remaining operators in the list
